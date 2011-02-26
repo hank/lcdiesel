@@ -45,8 +45,9 @@
  *  @name  Definitions for MCU Clock Frequency
  *  Adapt the MCU clock frequency in Hz to your target. 
  */
+#ifndef XTAL
 #define XTAL 4000000              /**< clock frequency in Hz, used to calculate delay timer */
-
+#endif
 
 /**
  * @name  Definition for LCD controller type

@@ -3,7 +3,7 @@ CFLAGS += -I../include
 TARGETS=$(patsubst %.c, %.hex, $(wildcard *.c))
 OBJS=$(patsubst %.c, %.o, $(wildcard *.c))
 
-%.o: %.c
+%.o: %.c ../lib/lcd.c
 	$(CC) $(CFLAGS) -o $@ $< ../lib/lcd.o
 
 %.hex: %.o
@@ -14,5 +14,8 @@ all: $(TARGETS)
 clean:
 	rm -f $(TARGETS) $(OBJS)
 
-flash_test_1:
-	sudo avrdude -c usbtiny -p t2313 -e -U flash:w:test_1.hex
+flash_test_custom_characters:
+	sudo $(DUDE) $(DUDE_FLAGS) -U flash:w:test_custom_characters.hex
+
+flash_test_lcd_puts:
+	sudo $(DUDE) $(DUDE_FLAGS) -U flash:w:test_lcd_puts.hex

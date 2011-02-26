@@ -478,13 +478,15 @@ void lcd_putc(char c)
 }/* lcd_putc */
 
 
+// WARNING: Doesn't work on some LCDs
+// Reason: unknown
+// Workaround: use lcd_putc/lcd_puts_P
 void lcd_puts(const char *s)
 /* print string on lcd (no auto linefeed) */
 {
-    int len = strlen(s);
-    int i = 0;
-    for(;i < len; ++i) {
-        lcd_putc(s[i]);
+    char c;
+    while((c = *s)) {
+        lcd_putc(c);
     }
 
 }/* lcd_puts */

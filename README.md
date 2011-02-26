@@ -73,4 +73,4 @@ See `include/chars.h` for more details.
 ## Example wiring
 Here's some hot board action that's working with one of the examples.
 
-![Board Action](/hank/lcdiesel/raw/wiring.jpg)
+![Board Action](/hank/lcdiesel/raw/master/wiring.jpg)

@@ -69,3 +69,8 @@ You can load them using this library like so:
     lcd_custom_char_p(0x00, _char_open_rectangle);
 
 See `include/chars.h` for more details.
+
+## Example wiring
+Here's some hot board action that's working with one of the examples.
+
+![Board Action](/hank/lcdiesel/raw/wiring.jpg)

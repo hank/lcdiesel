@@ -2,7 +2,7 @@
 export CC=avr-gcc
 export OBJCOPY=avr-objcopy
 export OBJCOPYFLAGS=
-export MCU=attiny2313
+export MCU=attiny2313a
 # Speed of the CPU oscillator
 export F_CPU =8000000
 # Speed of the XTAL oscillator

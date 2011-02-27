@@ -484,13 +484,13 @@ void lcd_putc(char c)
 void lcd_puts(const char *s)
 /* print string on lcd (no auto linefeed) */
 {
-    char c;
-    while((c = *s)) {
+    register char c;
+
+    while ( (c = *s++) ) {
         lcd_putc(c);
     }
 
 }/* lcd_puts */
-
 
 /*************************************************************************
 Display string from program memory without auto linefeed 

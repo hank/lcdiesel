@@ -10,8 +10,8 @@ int main(void)
     lcd_command(LCD_FUNCTION_4BIT_2LINES );
     lcd_clrscr();
 
-    // We better still be at 3, 1
-    lcd_puts("This is a test");
+    lcd_puts("Test");
+    lcd_puts_p(PSTR("Test"));
 
     for(;;);
 }

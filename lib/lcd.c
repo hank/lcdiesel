@@ -477,10 +477,15 @@ void lcd_putc(char c)
 
 }/* lcd_putc */
 
-
-// WARNING: Doesn't work on some LCDs
-// Reason: unknown
-// Workaround: use lcd_putc/lcd_puts_P
+// This function works as long as you compile right
+// If lcd_putc works but lcd_puts doesn't, make sure you
+// are doing avr-objcopy of the .data section.  I wasn't
+// and the code still runs, it just prints 0xFF in place of
+// all the characters you want to print.  Very frustrating.
+//
+// Example: avr-objcopy -R .eeprom -R .fuse -R .lock -O ihex test.o test.hex
+// 
+// This keeps the specified sections out and adds the rest (.text and .data).
 void lcd_puts(const char *s)
 /* print string on lcd (no auto linefeed) */
 {

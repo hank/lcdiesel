@@ -7,7 +7,7 @@ OBJS=$(patsubst %.c, %.o, $(wildcard *.c))
 	$(CC) $(CFLAGS) -o $@ $< ../lib/lcd.o
 
 %.hex: %.o
-	$(OBJCOPY) $(OBJCOPYFLAGS) -j .text -O ihex $< $@
+	$(OBJCOPY) $(OBJCOPYFLAGS) -R .eeprom -R .fuse -R .lock -O ihex $< $@
 
 all: $(TARGETS)
 

@@ -486,13 +486,22 @@ void lcd_putc(char c)
 // Example: avr-objcopy -R .eeprom -R .fuse -R .lock -O ihex test.o test.hex
 // 
 // This keeps the specified sections out and adds the rest (.text and .data).
-void lcd_puts(const char *s)
+//
+// len can be specified to force printing through NULLs and such.
 /* print string on lcd (no auto linefeed) */
+void lcd_puts_len(const char *s, int len)
 {
     register char c;
 
-    while ( (c = *s++) ) {
-        lcd_putc(c);
+    if(!len) {
+        while ( (c = *s++) ) {
+            lcd_putc(c);
+        }
+    } else {
+        while ( len-- ) {
+            c = *s++;
+            lcd_putc(c);
+        }
     }
 
 }/* lcd_puts */
@@ -516,14 +525,37 @@ void lcd_puts_p(const char *progmem_s)
 // Adds a custom character to the LCD from PROGMEM
 // Input: c     character to set
 //        data  8 bitstrings in PROGMEM
-void lcd_custom_char_p(unsigned char c, const char *data) {
+void lcd_custom_char_p_len(unsigned char c, const char *progmem_data, int len) {
     uint8_t i = 0;
     int xy = lcd_getxy(); // Save position in DDRAM
     // Tricky line.  Basically, we're taking the character code lower 3 bits
     // and multiplying by 8 to get the byte offset into CGRAM
     lcd_command(_BV(LCD_CGRAM) | ((c&0x07)<<3)); 
+    for (; i<len; ++i) {
+        lcd_data(pgm_read_byte_near(&progmem_data[i]));
+    }
+    // Clean up any more lines
+    for(; i<8; ++i) {
+        lcd_data(0);
+    }
+    lcd_gotoxy(xy>>4, xy&0x0F); // Reset to DDRAM mode and to old address.
+}
+
+// Adds a custom character to the LCD from PROGMEM
+// Input: c     character to set
+//        data  8 bitstrings in PROGMEM
+void lcd_custom_char_len(unsigned char c, const char *data, int len) {
+    uint8_t i = 0;
+    int xy = lcd_getxy(); // Save position in DDRAM
+    // Tricky line.  Basically, we're taking the character code lower 3 bits
+    // and multiplying by 8 to get the byte offset into CGRAM
+    lcd_command(_BV(LCD_CGRAM) | ((c&0x07)<<3)); 
+    for (; i<len; ++i) {
+        lcd_data(data[i]);
+    }
+    // Clean up slack
     for (; i<8; ++i) {
-        lcd_data(pgm_read_byte_near(&data[i]));
+        lcd_data(0);
     }
     lcd_gotoxy(xy>>4, xy&0x0F); // Reset to DDRAM mode and to old address.
 }

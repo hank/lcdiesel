@@ -384,8 +384,6 @@ void lcd_gotoxy(uint8_t x, uint8_t y)
 }/* lcd_gotoxy */
 
 
-/*************************************************************************
-*************************************************************************/
 int lcd_getxy(void)
 {
     return lcd_waitbusy();
@@ -484,6 +482,26 @@ void lcd_puts_len(const char *s, int len)
     }
 
 }/* lcd_puts */
+
+void lcd_puts_numeric(const void * s, int len)
+{
+        char c[3] = {0}; // 3-character b10 max for byte
+        uint8_t * bp = (uint8_t *)s;
+        uint16_t i = 0;
+        for(; i < len; ++i) {
+            // Get ASCII numeric character code
+            c[0] = bp[i] % 10;
+            c[1] = (bp[i] / 10) % 10;
+            c[2] = (bp[i] / 100);
+            if(c[2]) lcd_putc(0x30+c[2]);
+            if(c[1]) lcd_putc(0x30+c[1]);
+            else if(c[2]) lcd_putc('0');
+            if(c[0]) lcd_putc(0x30+c[0]);
+            else lcd_putc('0');
+            lcd_putc(' ');
+            ++bp;
+        }
+}
 
 /*************************************************************************
 Display string from program memory without auto linefeed 

@@ -176,6 +176,9 @@ extern void lcd_home(void);
 //         y (0: first line)
 extern void lcd_gotoxy(uint8_t x, uint8_t y);
 
+// Get X and Y, high nibble is X low nibble is Y
+extern int  lcd_getxy(void);
+
 // Display character at current cursor position
 extern void lcd_putc(char c);
 

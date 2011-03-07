@@ -89,6 +89,8 @@ static const PROGMEM unsigned char _char_3x3_8[] =
     {0x06, 0x0E, 0x0E};
 static const PROGMEM unsigned char _char_3x3_9[] = 
     {0x0E, 0x0E, 0x02};
+static const PROGMEM unsigned char _char_3x3_space[] = 
+    {0x00, 0x00, 0x00};
 #endif
 
 #endif // CHARS_H

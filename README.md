@@ -70,6 +70,9 @@ You can load them using this library like so:
 
 See `include/chars.h` for more details.
 
+## License
+See the LICENSE file.
+
 ## Example wiring
 Here's some hot board action that's working with one of the examples.
 

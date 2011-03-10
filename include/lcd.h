@@ -24,7 +24,7 @@ Modified by Erik Gregg ralree@gmail.com http://www.ralree.com
 History
     Gregg:
       Based on Peter Fleury's library, retaining GPL license.
-      Added custom character commands, cleaned a few things up.
+      02/2011: Added custom character commands, cleaned a few things up.
 
     Fleury:
       Originally based on Volker Oth's LCD library,

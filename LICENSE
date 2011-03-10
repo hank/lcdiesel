@@ -1,0 +1,11 @@
+This project has components with different licensure and ownership.
+
+Parts of the code authored by Erik Gregg entirely are licensed under a
+Simplified BSD license (or "FreeBSD license").  The license for these source
+code files is contained at the top of each file as well as in GREGG-LICENSE in
+the root of the project.
+
+Parts of the code authored by Peter Fleury and containing changes by Erik
+Gregg are copyrighted by Peter Fleury and released under GPLv2 using the license
+in FLEURY-LICENSE.  The suggested header format for GPLv2 is followed in the
+affected source code files.
